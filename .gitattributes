@@ -1,0 +1,9 @@
+# Développé sous Windows, construit sous Linux (Railway) : on normalise les fins de ligne.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,27 @@
+# Pas de "name:" ni de "container_name:" : Docker nomme le projet d'après le dossier,
+# donc deux projets issus de ce template n'auront pas le même conteneur ni le même volume.
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    ports:
+      # 5433 côté hôte pour éviter un PostgreSQL installé nativement.
+      # Port déjà pris par un autre projet : DB_PORT=5434 npm run db:up (et adapter DATABASE_URL).
+      - '${DB_PORT:-5433}:5432'
+    volumes:
+      # Postgres 18 stocke ses données sous /var/lib/postgresql/18/docker :
+      # monter l'ancien chemin /var/lib/postgresql/data ferait échouer le conteneur.
+      - pg_data:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U app -d app']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pg_data:
