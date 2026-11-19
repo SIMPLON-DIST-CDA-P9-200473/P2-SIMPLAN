@@ -1,6 +1,24 @@
-# template-fullstack-railway
+# Simplan
 
-Base de départ pour une app fullstack déployée sur Railway en **un seul service** : Express sert l'API sous `/api` et le build React pour tout le reste.
+Application web de réservation de créneaux pour un lieu partagé : terrain de sport, salle, studio ou tout autre espace à réserver.
+
+Les utilisateurs voient en temps réel quand le lieu est libre et réservent un créneau en ligne, sans appeler ni passer sur place. Pour que le lieu reste accessible à tous, chaque utilisateur ne peut avoir qu'une seule réservation active à la fois, et un e-mail de rappel est envoyé 2 h avant le créneau. Le gestionnaire dispose d'un back-office pour gérer les réservations, bloquer des plages (maintenance, fermeture exceptionnelle) et modérer les comptes.
+
+Le MVP porte sur un seul lieu.
+
+Projet réalisé par **Baris**, **Liamine** et **Enzo** (Brief 3, Simplon).
+
+## Liens du projet
+
+| Ressource       | Lien                                                                                                                     |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Trello          | [projet-2-enzo-liamine-baris](https://trello.com/b/Do6iWaYt/projet-2-enzo-liamine-baris)                                 |
+| GitHub          | [SIMPLON-DIST-CDA-P9-200473/P2-SIMPLAN](https://github.com/SIMPLON-DIST-CDA-P9-200473/P2-SIMPLAN)                        |
+| Routes de l'API | [Simplan — Documentation de l'API](https://docs.google.com/document/d/1FN5QQutIaLyGKsiO8Jx0q9IsVKolDL_bxBhvnueVPRw/edit) |
+| Merise          | _lien à ajouter_                                                                                                         |
+| Wireframes      | _lien à ajouter_                                                                                                         |
+| Maquettes       | _lien à ajouter_                                                                                                         |
+| User stories    | _lien à ajouter_                                                                                                         |
 
 ## Stack
 
@@ -10,7 +28,11 @@ Base de départ pour une app fullstack déployée sur Railway en **un seul servi
 | Backend  | Node 24, Express 5, Prisma 6, zod, helmet, compression, cors, morgan |
 | Base     | PostgreSQL 18 (Docker en local, service Railway en prod)             |
 
-Monorepo en workspaces npm : `backend/` et `frontend/`.
+Prévu pour les prochaines fonctionnalités : React Hook Form (formulaires), argon2 (hash des mots de passe), JWT en cookie httpOnly (authentification), Nodemailer et node-cron (e-mails de confirmation et de rappel).
+
+L'application suit une organisation MVC : Prisma pour les modèles, Express pour les contrôleurs, React pour les vues.
+
+Monorepo en workspaces npm : `backend/` et `frontend/`. L'application est déployée sur Railway en **un seul service** : Express sert l'API sous `/api` et le build React pour tout le reste.
 
 ## Démarrer
 
@@ -79,6 +101,7 @@ frontend/
     lib/queryClient.js options par défaut des queries
     pages/
     router.jsx
+docs/                  tutos (routes, TanStack Query, Prisma)
 ```
 
 L'alias `@` pointe sur `frontend/src/`.
